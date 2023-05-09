@@ -8,7 +8,7 @@ const City = () => {
   const [weather, setWeather] = useState(null);
   const [success, setSuccess] = useState(true);
   const getCoordinates = async () => {
-    const url = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${key}`;
+    const url = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${key}`;
     const data = await axios.get(`${url}`, {
       headers: {
         "Content-Type": "application/json",
