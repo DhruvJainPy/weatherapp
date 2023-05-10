@@ -34,6 +34,7 @@ const City = () => {
         headers: { "Content-Type": "application/json" },
       });
       setWeather(data.data);
+      console.log(data.data);
       setSuccess(true);
     } else {
       setSuccess(false);

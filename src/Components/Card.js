@@ -8,9 +8,9 @@ import cloudy from "../Images/cloudy.jpg";
 
 const Card = (props) => {
   const { weather } = props;
-  const dt = new Date(weather.dt * 1000);
-  const sunrise = new Date(weather.sys.sunrise * 1000);
-  const sunset = new Date(weather.sys.sunset * 1000);
+  const dt = new Date((weather.dt + weather.timezone) * 1000);
+  const sunrise = new Date((weather.sys.sunrise + weather.timezone) * 1000);
+  const sunset = new Date((weather.sys.sunset + weather.timezone) * 1000);
   const images = [
     {
       type: "Thunderstorm",
@@ -69,7 +69,7 @@ const Card = (props) => {
                 className="card-title display-6"
                 style={{ fontSize: "2.25rem" }}
               >
-                {dt.toDateString()}
+                {dt.toUTCString().substring(0, 16)}
               </h5>
 
               <div className="card-text my-3">
@@ -88,10 +88,12 @@ const Card = (props) => {
                   Pressure : <span>{weather.main.pressure}&#13169;</span>
                 </p>
                 <p className="my-2">
-                  Sunrise : <span>{sunrise.toLocaleString()} A.M</span>
+                  Sunrise :{" "}
+                  <span>{sunrise.toUTCString().substring(0, 25)} A.M</span>
                 </p>
                 <p className="my-2">
-                  Sunset : <span>{sunset.toLocaleString()} P.M</span>
+                  Sunset :{" "}
+                  <span>{sunset.toUTCString().substring(0, 25)} P.M</span>
                 </p>
                 <p className="my-2">
                   <span className="text-white">
